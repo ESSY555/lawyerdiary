@@ -7,9 +7,10 @@ Route::get('/', function () {
 })->name('dashboard.dashboard');
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    // Redirect /dashboard to root
     Route::get('/', function () {
-        return view('dashboard.index', ['active' => 'Dashboard', 'title' => 'Dashboard - Lawyer Diary']);
-    })->name('dashboard');
+        return redirect()->route('dashboard.dashboard');
+    });
 
     Route::get('/calendar', function () {
         return view('dashboard.calendar', ['active' => 'Calendar', 'title' => 'Calendar - Lawyer Diary']);
