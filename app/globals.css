@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  /* Landing Page Color Scheme */
+  --primary: #4338ca;
+  --primary-glow: #6366f1;
+  --secondary: #0f172a;
+  --text-body: #334155;
+  --text-light: #94a3b8;
+  --bg-body: #f8fafc;
+  
+  /* Glass Morphism */
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-highlight: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  
+  /* Sidebar Colors */
+  --sidebar-bg: #223040;
+  --sidebar-active-bg: #2c3b4d;
+  --sidebar-text: #d0d0d0;
+  --sidebar-active-text: #ffffff;
+  
+  /* Shadcn/ui compatible variables */
+  --background: var(--bg-body);
+  --foreground: var(--text-body);
+  --card: var(--glass-bg);
+  --card-foreground: var(--text-body);
+  --popover: #ffffff;
+  --popover-foreground: var(--text-body);
+  --primary-color: var(--primary);
+  --primary-foreground: #ffffff;
+  --secondary-color: var(--secondary);
+  --secondary-foreground: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: var(--text-light);
+  --accent: var(--primary-glow);
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.2);
+  --input: rgba(255, 255, 255, 0.2);
+  --ring: var(--primary);
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary-color);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary-color);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--bg-body);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.25) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-body);
+  font-family: var(--font-geist-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}

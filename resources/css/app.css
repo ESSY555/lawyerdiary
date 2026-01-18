@@ -1,0 +1,165 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+:root {
+    /* Landing Page Color Scheme */
+    --primary: #4338ca;
+    --primary-glow: #6366f1;
+    --secondary: #0f172a;
+    --text-body: #334155;
+    --text-light: #94a3b8;
+    --bg-body: #f8fafc;
+    
+    /* Glass Morphism */
+    --glass-bg: rgba(255, 255, 255, 0.35);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-highlight: rgba(255, 255, 255, 0.8);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    
+    /* Sidebar Colors */
+    --sidebar-bg: #181c2b;
+    --sidebar-active-bg: #4338ca;
+    --sidebar-text: #ffffff;
+    --sidebar-active-text: #ffffff;
+    
+    /* Shadcn/ui compatible variables */
+    --background: var(--bg-body);
+    --foreground: var(--text-body);
+    --card: var(--glass-bg);
+    --card-foreground: var(--text-body);
+    --popover: #ffffff;
+    --popover-foreground: var(--text-body);
+    --primary-color: var(--primary);
+    --primary-foreground: #ffffff;
+    --secondary-color: var(--secondary);
+    --secondary-foreground: #ffffff;
+    --muted: #f1f5f9;
+    --muted-foreground: var(--text-light);
+    --accent: var(--primary-glow);
+    --accent-foreground: #ffffff;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: rgba(255, 255, 255, 0.2);
+    --input: rgba(255, 255, 255, 0.2);
+    --ring: var(--primary);
+    --radius: 0.5rem;
+}
+
+body {
+    background: #f8fafc;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.06) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s ease;
+}
+
+.glass:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+/* Sidebar always static across all screens */
+aside {
+    display: flex !important;
+    position: static !important;
+    transform: translateX(0) !important;
+    z-index: auto !important;
+}
+
+main {
+    width: auto !important;
+    flex: 1 1 0% !important;
+    transition: margin-left 0.3s ease;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+    /* Ensure text doesn't overflow */
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    /* Better spacing on mobile */
+    .space-y-4 > * + * {
+        margin-top: 1rem;
+    }
+    
+    .space-y-3 > * + * {
+        margin-top: 0.75rem;
+    }
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Enhanced card hover effects */
+.glass {
+    position: relative;
+    overflow: hidden;
+}
+
+.glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.glass:hover::before {
+    left: 100%;
+}
+
+/* Better focus states */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+}
