@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('dashboard.dashboard');
-});
+    return view('dashboard.index', ['active' => 'Dashboard', 'title' => 'Dashboard - Lawyer Diary']);
+})->name('dashboard.dashboard');
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', function () {
