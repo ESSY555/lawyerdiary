@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /vendor
+!/vendor/.gitkeep
 /.pnp
 .pnp.*
 .yarn/*
