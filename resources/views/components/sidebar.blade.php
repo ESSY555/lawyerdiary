@@ -9,35 +9,37 @@
     x-transition:leave="ease-in duration-200"
     x-transition:leave-start="translate-x-0"
     x-transition:leave-end="-translate-x-full"
-    :class="sidebarCollapsed ? 'w-20' : 'w-64'"
-    class="fixed lg:static inset-y-0 left-0 z-50 lg:z-auto flex h-screen flex-shrink-0 flex-col bg-[#181c2b] text-white shadow-lg lg:shadow-none transition-all duration-300"
+    :class="sidebarCollapsed ? 'w-20' : 'w-72'"
+    class="fixed lg:static inset-y-0 left-0 z-50 lg:z-auto flex h-screen flex-shrink-0 flex-col bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white shadow-2xl lg:shadow-xl border-r border-white/10 transition-all duration-300"
+    style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 50%, rgba(15, 23, 42, 0.95) 100%); backdrop-filter: blur(20px);"
     @click.stop
 >
     <!-- Logo Section -->
-    <div class="flex items-center gap-3 px-4 lg:px-6 py-6 relative" :class="sidebarCollapsed ? 'justify-center px-2' : ''">
-        <div class="flex h-10 w-10 items-center justify-center rounded-lg flex-shrink-0" :class="sidebarCollapsed ? 'bg-[#3f46f7]' : 'bg-[#4E44E6]'">
-            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="flex items-center gap-3 px-5 lg:px-6 py-6 relative border-b border-white/5" :class="sidebarCollapsed ? 'justify-center px-2' : ''">
+        <div class="relative flex h-12 w-12 items-center justify-center rounded-xl flex-shrink-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 shadow-lg shadow-blue-500/20 ring-2 ring-blue-500/20">
+            <svg class="h-7 w-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
             </svg>
+            <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent"></div>
         </div>
         <div class="flex flex-col overflow-hidden transition-all duration-300" :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">
-            <span class="text-lg font-bold text-white whitespace-nowrap">Lawyer Diary</span>
-            <span class="text-xs text-[#9ca3af] whitespace-nowrap">DIGITAL MANAGEMENT</span>
+            <span class="text-xl font-bold text-white whitespace-nowrap tracking-tight">Lawyer Diary</span>
+            <span class="text-xs text-slate-400 whitespace-nowrap font-medium tracking-wider">DIGITAL MANAGEMENT</span>
         </div>
         <!-- Close button for mobile -->
         <button
             x-show="sidebarOpen"
             @click.stop="sidebarOpen = false"
-            class="lg:hidden ml-auto p-1 rounded-lg hover:bg-[#2c3b4d] text-white flex-shrink-0"
+            class="lg:hidden ml-auto p-2 rounded-lg backdrop-blur-sm bg-white/5 hover:bg-white/10 border border-white/10 text-white flex-shrink-0 transition-all duration-200"
         >
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 space-y-1 px-2 lg:px-3 overflow-y-auto">
+    <nav class="flex-1 space-y-1.5 px-3 lg:px-4 py-4 overflow-y-auto overflow-x-hidden">
         @php
 $navItems = [
     ['name' => 'Dashboard', 'route' => 'dashboard.dashboard', 'icon' => 'layout-dashboard'],
@@ -65,55 +67,72 @@ $icons = [
         @endphp
 
         @foreach($navItems as $item)
-                    @php
-            $isActive = request()->routeIs($item['route']) ||
-                ($active && str_contains($item['name'], $active));
-                    @endphp
-                    <a
-                        href="{{ route($item['route']) }}"
-                        @click="if (window.innerWidth < 1024) sidebarOpen = false"
-                        class="group relative flex items-center py-2.5 text-sm transition-colors {{ $isActive ? 'font-semibold' : 'font-medium' }} {{ $isActive ? 'bg-blue-600 text-white' : 'text-white hover:bg-[#2c3b4d]/50' }}"
-                        :class="sidebarCollapsed ? 'justify-center px-2 rounded-lg' : 'gap-3 px-3 {{ $isActive ? 'rounded-r-lg' : '' }}'"
-                        :title="sidebarCollapsed ? '{{ $item['name'] }}' : ''"
-                    >
-                        <div class="flex h-9 w-9 items-center justify-center transition-colors flex-shrink-0 text-white">
-                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="{{ $icons[$item['icon']] }}" />
-                            </svg>
-                        </div>
-                        <span class="overflow-hidden transition-all duration-300 whitespace-nowrap" :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">{{ $item['name'] }}</span>
-                    </a>
+            @php
+                $isActive = request()->routeIs($item['route']) ||
+                    ($active && str_contains($item['name'], $active));
+            @endphp
+            <a
+                href="{{ route($item['route']) }}"
+                @click="if (window.innerWidth < 1024) sidebarOpen = false"
+                class="group relative flex items-center py-3 text-sm transition-all duration-200 {{ $isActive ? 'font-semibold' : 'font-medium' }}"
+                :class="sidebarCollapsed ? 'justify-center px-2 rounded-xl mx-2' : 'gap-3 px-4 rounded-xl mx-2'"
+                :title="sidebarCollapsed ? '{{ $item['name'] }}' : ''"
+            >
+                @if($isActive)
+                    <!-- Active Background with Gradient -->
+                    <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-purple-600/90 shadow-lg shadow-blue-500/20 border border-white/10"></div>
+                    <!-- Active Indicator Line -->
+                    <div class="absolute left-2 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-blue-400 to-purple-400 rounded-r-full shadow-lg shadow-blue-400/50"></div>
+                @else
+                    <!-- Hover Background -->
+                    <div class="absolute inset-0 rounded-xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-white/5"></div>
+                @endif
+                
+                <!-- Icon Container -->
+                <div class="relative flex h-10 w-10 items-center justify-center rounded-lg flex-shrink-0 transition-all duration-200 {{ $isActive ? 'bg-white/20 shadow-md' : 'bg-white/5 group-hover:bg-white/10' }}">
+                    <svg class="h-5 w-5 transition-all duration-200 {{ $isActive ? 'text-white scale-110' : 'text-slate-300 group-hover:text-white' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="{{ $icons[$item['icon']] }}" />
+                    </svg>
+                </div>
+                
+                <!-- Text -->
+                <span class="relative overflow-hidden transition-all duration-300 whitespace-nowrap {{ $isActive ? 'text-white' : 'text-slate-300 group-hover:text-white' }}" :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">{{ $item['name'] }}</span>
+            </a>
         @endforeach
     </nav>
 
-    <!-- Logout Button -->
-    <div class="p-3 border-t border-white/10">
-        <a
-            href="#"
-            class="group relative flex items-center rounded-lg py-2.5 text-sm font-medium transition-colors text-white hover:bg-[#2c3b4d]/50"
-            :class="sidebarCollapsed ? 'justify-center px-2' : 'gap-3 px-3'"
-            :title="sidebarCollapsed ? 'Logout' : ''"
-        >
-            <div class="flex h-9 w-9 items-center justify-center rounded-md transition-colors flex-shrink-0 text-[#94a3b8] group-hover:text-[#d0d0d0]">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-            </div>
-            <span class="overflow-hidden transition-all duration-300 whitespace-nowrap" :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">Logout</span>
-        </a>
-    </div>
+    <!-- Bottom Section -->
+    <div class="mt-auto border-t border-white/5">
+        <!-- Logout Button -->
+        <div class="p-3">
+            <a
+                href="#"
+                class="group relative flex items-center rounded-xl py-3 text-sm font-medium transition-all duration-200 text-slate-300 hover:text-white mx-2"
+                :class="sidebarCollapsed ? 'justify-center px-2' : 'gap-3 px-4'"
+                :title="sidebarCollapsed ? 'Logout' : ''"
+            >
+                <div class="absolute inset-0 rounded-xl bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-red-500/20"></div>
+                <div class="relative flex h-10 w-10 items-center justify-center rounded-lg flex-shrink-0 bg-white/5 group-hover:bg-red-500/20 transition-all duration-200">
+                    <svg class="h-5 w-5 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                </div>
+                <span class="relative overflow-hidden transition-all duration-300 whitespace-nowrap" :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">Logout</span>
+            </a>
+        </div>
 
-    <!-- Collapse/Expand Toggle Button at Bottom - Desktop Only -->
-    <div class="hidden lg:flex items-center justify-center p-3 border-t border-white/10">
-        <button
-            @click="sidebarCollapsed = !sidebarCollapsed"
-            class="flex items-center justify-center gap-2 w-full h-8 rounded-lg text-white hover:bg-[#2c3b4d]/50 transition-all duration-200"
-            :title="sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'"
-        >
-            <svg class="h-5 w-5 transition-transform duration-300" :class="sidebarCollapsed ? '' : 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-            <span class="text-sm font-medium overflow-hidden transition-all duration-300 whitespace-nowrap" :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">Collapse</span>
-        </button>
+        <!-- Collapse/Expand Toggle Button - Desktop Only -->
+        <div class="hidden lg:flex items-center justify-center p-3">
+            <button
+                @click="sidebarCollapsed = !sidebarCollapsed"
+                class="group flex items-center justify-center gap-2 w-full h-10 rounded-xl backdrop-blur-sm bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all duration-200 mx-2"
+                :title="sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+            >
+                <svg class="h-5 w-5 transition-transform duration-300 group-hover:scale-110" :class="sidebarCollapsed ? '' : 'rotate-180'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span class="text-sm font-medium overflow-hidden transition-all duration-300 whitespace-nowrap" :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">Collapse</span>
+            </button>
+        </div>
     </div>
 </aside>
