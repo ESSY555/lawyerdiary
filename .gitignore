@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/vendor
 /.pnp
 .pnp.*
 .yarn/*
@@ -9,6 +10,27 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+
+# Laravel
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+/storage/*.key
+/storage/app/*
+!/storage/app/.gitignore
+/storage/framework/cache/*
+!/storage/framework/cache/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/testing/*
+!/storage/framework/testing/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/logs/*
+!/storage/logs/.gitignore
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
 
 # testing
 /coverage
@@ -19,6 +41,10 @@
 
 # production
 /build
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
 
 # misc
 .DS_Store
@@ -32,6 +58,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
