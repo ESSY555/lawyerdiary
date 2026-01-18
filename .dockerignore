@@ -1,0 +1,49 @@
+# Dependencies (installed in container)
+node_modules
+vendor
+
+# Build artifacts
+public/build
+public/hot
+public/storage
+
+# Development files
+.git
+.gitignore
+.editorconfig
+.env.example
+.env.testing
+.phpunit.result.cache
+
+# IDE files
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+storage/logs/*
+
+# Testing
+tests
+phpunit.xml
+.phpunit.cache
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+
+# Next.js (if not needed)
+.next
+out
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
