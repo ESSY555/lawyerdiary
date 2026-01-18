@@ -1,6 +1,7 @@
 # Dependencies (installed in container)
 node_modules
-vendor
+vendor/**
+!vendor/.gitkeep
 
 # Build artifacts
 public/build
