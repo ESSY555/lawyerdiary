@@ -31,6 +31,10 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         return view('dashboard.notes', ['active' => 'Notes', 'title' => 'Notes & Tasks - Lawyer Diary']);
     })->name('notes');
 
+    Route::get('/notes/create', function () {
+        return view('dashboard.create-note', ['active' => 'Notes', 'title' => 'Create Note - Lawyer Diary']);
+    })->name('notes.create');
+
     Route::get('/documents', function () {
         return view('dashboard.documents', ['active' => 'Documents', 'title' => 'Documents - Lawyer Diary']);
     })->name('documents');

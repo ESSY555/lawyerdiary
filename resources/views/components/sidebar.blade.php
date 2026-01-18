@@ -74,10 +74,10 @@
                 @click="if (window.innerWidth < 1024) sidebarOpen = false"
                 class="group relative flex items-center py-2.5 text-sm transition-colors {{ $isActive ? 'font-semibold' : 'font-medium' }}"
                 :class="sidebarCollapsed ? 'justify-center px-2 rounded-lg' : 'gap-3 px-3'"
-                :class="sidebarCollapsed ? '{{ $isActive ? 'bg-[#4338ca] text-white' : 'text-white hover:bg-[#2c3b4d]/50' }}' : '{{ $isActive ? 'bg-[#4338ca] text-white rounded-r-lg' : 'text-white hover:bg-[#2c3b4d]/50' }}'"
+                :class="sidebarCollapsed ? '{{ $isActive ? 'bg-blue-600 text-white' : 'text-white hover:bg-[#2c3b4d]/50' }}' : '{{ $isActive ? 'bg-blue-600 text-white rounded-r-lg' : 'text-white hover:bg-[#2c3b4d]/50' }}'"
                 :title="sidebarCollapsed ? '{{ $item['name'] }}' : ''"
             >
-                <div class="flex h-9 w-9 items-center justify-center transition-colors flex-shrink-0 text-white"
+                <div class="flex h-9 w-9 items-center justify-center transition-colors flex-shrink-0 {{ $isActive ? 'text-white' : 'text-white' }}"
                 >
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="{{ $icons[$item['icon']] }}" />

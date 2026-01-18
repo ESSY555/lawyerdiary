@@ -9,12 +9,12 @@
                         <p class="text-blue-100 text-base sm:text-lg">Keep track of important notes and tasks</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <button @click="showNoteModal = true" class="flex items-center gap-2 px-5 py-2.5 bg-white text-[#4338ca] rounded-lg hover:bg-blue-50 transition-all font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
+                        <a href="{{ route('dashboard.notes.create') }}" class="flex items-center gap-2 px-5 py-2.5 bg-white text-[#4338ca] rounded-lg hover:bg-blue-50 transition-all font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                             </svg>
                             New Note
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -98,11 +98,11 @@
                         <h2 class="text-xl font-bold text-gray-900">Notes</h2>
                         <p class="text-sm text-gray-500">Your important notes</p>
                     </div>
-                    <button @click="showNoteModal = true" class="p-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-[#4338ca] transition-colors">
+                    <a href="{{ route('dashboard.notes.create') }}" class="p-2 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-[#4338ca] transition-colors">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
-                    </button>
+                    </a>
                 </div>
                 <div class="space-y-3">
                     <template x-for="note in notes" :key="note.id">
