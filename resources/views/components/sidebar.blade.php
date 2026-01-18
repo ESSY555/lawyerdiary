@@ -1,8 +1,17 @@
 @props(['active' => ''])
 
 <aside 
+    x-show="sidebarOpen"
+    x-cloak
+    x-transition:enter="ease-out duration-300"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="ease-in duration-200"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="-translate-x-full"
     :class="sidebarCollapsed ? 'w-20' : 'w-64'"
-    class="static inset-y-0 left-0 flex h-screen flex-shrink-0 flex-col bg-[#181c2b] text-white transition-all duration-300"
+    class="fixed lg:static inset-y-0 left-0 z-50 lg:z-auto flex h-screen flex-shrink-0 flex-col bg-[#181c2b] text-white shadow-lg lg:shadow-none transition-all duration-300"
+    @click.stop
 >
     <!-- Logo Section -->
     <div class="flex items-center gap-3 px-4 lg:px-6 py-6 relative" :class="sidebarCollapsed ? 'justify-center px-2' : ''">
@@ -17,6 +26,7 @@
         </div>
         <!-- Close button for mobile -->
         <button
+            x-show="sidebarOpen"
             @click.stop="sidebarOpen = false"
             class="lg:hidden ml-auto p-1 rounded-lg hover:bg-[#2c3b4d] text-white flex-shrink-0"
         >
@@ -61,6 +71,7 @@
             @endphp
             <a
                 href="{{ route($item['route']) }}"
+                @click="if (window.innerWidth < 1024) sidebarOpen = false"
                 class="group relative flex items-center py-2.5 text-sm transition-colors {{ $isActive ? 'font-semibold' : 'font-medium' }}"
                 :class="sidebarCollapsed ? 'justify-center px-2 rounded-lg' : 'gap-3 px-3'"
                 :class="sidebarCollapsed ? '{{ $isActive ? 'bg-[#4338ca] text-white' : 'text-white hover:bg-[#2c3b4d]/50' }}' : '{{ $isActive ? 'bg-[#4338ca] text-white rounded-r-lg' : 'text-white hover:bg-[#2c3b4d]/50' }}'"
@@ -94,8 +105,8 @@
         </a>
     </div>
 
-    <!-- Collapse/Expand Toggle Button at Bottom -->
-    <div class="flex items-center justify-center p-3 border-t border-white/10">
+    <!-- Collapse/Expand Toggle Button at Bottom - Desktop Only -->
+    <div class="hidden lg:flex items-center justify-center p-3 border-t border-white/10">
         <button
             @click="sidebarCollapsed = !sidebarCollapsed"
             class="flex items-center justify-center gap-2 w-full h-8 rounded-lg text-white hover:bg-[#2c3b4d]/50 transition-all duration-200"

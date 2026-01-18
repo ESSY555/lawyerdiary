@@ -26,7 +26,7 @@
         <!-- Stats Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <!-- Total Cases Card -->
-            <div class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
+            <a href="{{ route('dashboard.cases') }}" class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 cursor-pointer block">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#4338ca]/10 to-[#6366f1]/5 rounded-full -mr-16 -mt-16"></div>
                 <div class="relative">
                     <div class="flex items-center justify-between mb-4">
@@ -41,10 +41,10 @@
                     <p class="text-3xl font-bold text-gray-900 mb-1">0</p>
                     <p class="text-xs text-gray-500">Active cases</p>
                 </div>
-            </div>
+            </a>
 
             <!-- Total Clients Card -->
-            <div class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
+            <a href="{{ route('dashboard.clients') }}" class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 cursor-pointer block">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#16a34a]/10 to-[#22c55e]/5 rounded-full -mr-16 -mt-16"></div>
                 <div class="relative">
                     <div class="flex items-center justify-between mb-4">
@@ -59,10 +59,10 @@
                     <p class="text-3xl font-bold text-gray-900 mb-1">0</p>
                     <p class="text-xs text-gray-500">Registered clients</p>
                 </div>
-            </div>
+            </a>
 
             <!-- Upcoming Hearings Card -->
-            <div class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
+            <a href="{{ route('dashboard.hearings') }}" class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 cursor-pointer block">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#f97316]/10 to-[#fb923c]/5 rounded-full -mr-16 -mt-16"></div>
                 <div class="relative">
                     <div class="flex items-center justify-between mb-4">
@@ -77,10 +77,10 @@
                     <p class="text-3xl font-bold text-gray-900 mb-1">0</p>
                     <p class="text-xs text-gray-500">Scheduled this week</p>
                 </div>
-            </div>
+            </a>
 
             <!-- Pending Tasks Card -->
-            <div class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
+            <a href="{{ route('dashboard.notes') }}" class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 cursor-pointer block">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#ef4444]/10 to-[#f87171]/5 rounded-full -mr-16 -mt-16"></div>
                 <div class="relative">
                     <div class="flex items-center justify-between mb-4">
@@ -95,7 +95,7 @@
                     <p class="text-3xl font-bold text-gray-900 mb-1">0</p>
                     <p class="text-xs text-gray-500">Requires attention</p>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Main Content Grid -->
@@ -129,12 +129,14 @@
                             </div>
                             <h4 class="text-lg font-semibold text-gray-900 mb-2">No hearings scheduled</h4>
                             <p class="text-sm text-gray-500 mb-6">You have a clear schedule for today</p>
-                            <x-ui.button variant="default" class="bg-gradient-to-r from-[#f97316] to-[#fb923c] hover:from-[#fb923c] hover:to-[#fdba74] text-white border-0">
-                                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                </svg>
-                                Schedule Hearing
-                            </x-ui.button>
+                            <a href="{{ route('dashboard.hearings') }}">
+                                <x-ui.button variant="default" class="bg-gradient-to-r from-[#f97316] to-[#fb923c] hover:from-[#fb923c] hover:to-[#fdba74] text-white border-0">
+                                    <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                    </svg>
+                                    Schedule Hearing
+                                </x-ui.button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -217,7 +219,7 @@
                         </div>
                     </div>
                     <div class="p-4 space-y-2">
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all group">
+                        <a href="{{ route('dashboard.cases') }}" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all group cursor-pointer">
                             <div class="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
                                 <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -225,7 +227,7 @@
                             </div>
                             <span class="font-medium text-gray-700 group-hover:text-blue-600">Add New Case</span>
                         </a>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 transition-all group">
+                        <a href="{{ route('dashboard.clients') }}" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 transition-all group cursor-pointer">
                             <div class="p-2 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors">
                                 <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -233,7 +235,7 @@
                             </div>
                             <span class="font-medium text-gray-700 group-hover:text-green-600">Add Client</span>
                         </a>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50 transition-all group">
+                        <a href="{{ route('dashboard.hearings') }}" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-amber-50 transition-all group cursor-pointer">
                             <div class="p-2 bg-orange-100 rounded-lg group-hover:bg-orange-200 transition-colors">
                                 <svg class="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -241,7 +243,7 @@
                             </div>
                             <span class="font-medium text-gray-700 group-hover:text-orange-600">Schedule Hearing</span>
                         </a>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all group">
+                        <a href="{{ route('dashboard.notes') }}" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all group cursor-pointer">
                             <div class="p-2 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors">
                                 <svg class="h-5 w-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />

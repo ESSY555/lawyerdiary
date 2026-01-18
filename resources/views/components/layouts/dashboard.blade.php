@@ -15,11 +15,37 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="flex h-screen overflow-hidden" x-data="{ sidebarCollapsed: false }">
+    <div class="flex h-screen overflow-hidden" x-data="{ sidebarCollapsed: false, sidebarOpen: false }" x-init="if (window.innerWidth >= 1024) sidebarOpen = true" @resize.window.debounce.250ms="if (window.innerWidth >= 1024) sidebarOpen = true; else sidebarOpen = false">
+        <!-- Mobile Overlay -->
+        <div 
+            x-show="sidebarOpen"
+            @click="sidebarOpen = false"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            style="display: none;"
+        ></div>
+
         <!-- Sidebar -->
         <x-sidebar :active="$active ?? ''" />
         
         <main class="flex-1 overflow-y-auto relative w-full">
+            <!-- Hamburger Button - Mobile Only -->
+            <button
+                x-show="!sidebarOpen"
+                @click="sidebarOpen = true"
+                class="lg:hidden fixed top-4 left-4 z-50 p-2.5 rounded-lg bg-[#4338ca] text-white shadow-lg hover:bg-[#6366f1] transition-colors"
+                style="display: none;"
+            >
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
             <div class="h-full p-4 sm:p-6 w-full lg:w-11/12 mx-auto">
                 {{ $slot }}
             </div>

@@ -86,18 +86,31 @@ body {
     display: none !important;
 }
 
-/* Sidebar always static across all screens */
-aside {
-    display: flex !important;
-    position: static !important;
-    transform: translateX(0) !important;
-    z-index: auto !important;
+/* Sidebar positioning - Desktop: static, Mobile: fixed overlay */
+@media (min-width: 1024px) {
+    aside[x-cloak],
+    aside {
+        display: flex !important;
+        position: static !important;
+        transform: translateX(0) !important;
+        z-index: auto !important;
+    }
+    main {
+        width: auto !important;
+        flex: 1 1 0% !important;
+        transition: margin-left 0.3s ease;
+    }
 }
 
-main {
-    width: auto !important;
-    flex: 1 1 0% !important;
-    transition: margin-left 0.3s ease;
+/* Sidebar positioning on mobile */
+@media (max-width: 1023px) {
+    aside[x-cloak] {
+        display: none !important;
+    }
+    aside {
+        position: fixed !important;
+        z-index: 50 !important;
+    }
 }
 
 /* Responsive improvements */
